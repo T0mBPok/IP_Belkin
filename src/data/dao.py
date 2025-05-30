@@ -13,12 +13,12 @@ class DataDAO:
     async def add_data(**values):
         async with async_session_maker() as session:
             new_data = Data(**values)
-            print(new_data)
             session.add(new_data)
             try:
                 await session.commit()
             except SQLAlchemyError  as e:
                 await session.rollback()
+                raise e
             return new_data
         
     async def delete_data(**filter_by):
