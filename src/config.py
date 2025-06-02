@@ -15,8 +15,7 @@ class Settings(BaseSettings):
         env_file_encoding="utf-8"
     )
     
-settings = Settings()
-
+settings = Settings() #type: ignore
 
 def get_db_url():
     return (f"postgresql+asyncpg://{settings.DB_USER}:{settings.DB_PASSWORD}@"
